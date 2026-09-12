@@ -1,0 +1,44 @@
+/* Larger desktop composition, with a separate compact phone layout. */
+header{max-width:1440px}
+.hero{max-width:1440px}
+.intro{font-size:16px;line-height:1.8}
+.eyebrow{font-size:11px;letter-spacing:2.6px}
+.scroll{font-size:11px}
+.memories{max-width:1380px}
+.divider{max-width:1332px}
+.section-head p,.letter>p{font-size:15px}
+.album-controls span{font-size:14px}
+.album-controls button{width:48px;height:48px;font-size:25px}
+.close-album{font-size:14px;padding:12px 26px}
+.quote blockquote{font-size:52px;max-width:850px}
+.quote p{font-size:28px}
+.envelope{width:300px;height:185px}
+.envelope:after{top:77px}
+.letter-copy p{font-size:23px}
+@media(min-width:1000px){
+ h1{font-size:clamp(90px,7vw,110px)}
+ h2{font-size:58px}
+ .collage{max-width:1150px;height:475px;margin-top:42px}
+ .polaroid{width:305px;padding:14px 14px 37px}
+ .polaroid img{height:286px}
+ .polaroid:nth-child(2){width:325px}
+ .polaroid:nth-child(2) img{height:322px}
+ .tape{width:108px;height:33px;left:calc(50% - 54px)}
+ .doodle{left:16px;font-size:78px}
+ .cover-heart{font-size:110px}
+}
+@media(min-width:701px) and (max-width:999px){
+ .collage{max-width:780px}
+ .polaroid{width:225px}
+ .polaroid:nth-child(2){width:245px}
+}
+@media(max-width:700px){
+ .intro{font-size:14px}
+ .eyebrow{font-size:9px;letter-spacing:1.8px}
+ .scroll{font-size:9px;letter-spacing:1.5px}
+ .quote blockquote{font-size:36px}
+ .quote p{font-size:25px}
+ .letter>p{font-size:14px}
+ .envelope{width:260px;height:160px}
+ .envelope:after{top:64px}
+}
