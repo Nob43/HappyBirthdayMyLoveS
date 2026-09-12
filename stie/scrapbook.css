@@ -1,0 +1,27 @@
+.gallery .memory{padding:42px 37px 20px;min-width:0;overflow:hidden}
+.photo-mount{position:relative;padding:11px;background:#fffdf7;box-shadow:2px 7px 14px #473b2325;isolation:isolate;margin:9px 0 27px;transform:rotate(-3deg)}
+.gallery .memory .photo-wrap{border-radius:0;aspect-ratio:4/4.3}
+.photo-mount .decoration{position:absolute;z-index:2;pointer-events:none}
+.photo-mount:before,.photo-mount:after{content:'';position:absolute;z-index:2;pointer-events:none}
+.gallery .memory h3:empty,.gallery .memory p:empty{display:none}
+.gallery .memory .folio{margin-top:16px}
+.frame-0 .photo-mount{padding-bottom:34px;transform:rotate(-4deg)}
+.frame-0 .photo-mount:before{width:88px;height:29px;top:-14px;left:calc(50% - 44px);background:#cfbd918a;transform:rotate(6deg);clip-path:polygon(3% 0,98% 4%,100% 95%,0 100%)}
+.frame-1 .photo-mount{transform:rotate(3deg);padding:8px;background:#f7eedc;outline:1px solid #bbaa8c;outline-offset:4px}
+.frame-1 .photo-mount:before,.frame-1 .photo-mount:after{width:48px;height:48px;background:linear-gradient(135deg,#b39872,#d6c29e);box-shadow:1px 2px 3px #67503920;clip-path:polygon(0 0,100% 0,0 100%);top:-7px;left:-7px}
+.frame-1 .photo-mount:after{top:auto;left:auto;bottom:-7px;right:-7px;transform:rotate(180deg)}
+.frame-2 .photo-mount{transform:rotate(2deg);padding:15px 15px 29px;background:#fffdf4;outline:1px dashed #c3b293;outline-offset:-7px}
+.frame-2 .photo-mount:before,.frame-2 .photo-mount:after{width:70px;height:24px;top:-6px;left:-20px;transform:rotate(-36deg);background:repeating-linear-gradient(45deg,#ac78665c 0 5px,#d4a59570 5px 10px)}
+.frame-2 .photo-mount:after{top:auto;left:auto;right:-19px;bottom:-4px}
+.frame-3 .photo-mount{transform:rotate(-2deg);padding:12px;background:#e5e1d3;border-radius:48% 48% 3px 3px;box-shadow:2px 6px 12px #473b231c}
+.gallery .frame-3 .photo-wrap{border-radius:48% 48% 0 0}
+.frame-3 .photo-mount:after{content:'♡';font:38px Caveat,cursive;color:#8e3e43;right:-15px;bottom:-22px;transform:rotate(17deg)}
+.frame-4 .photo-mount{transform:rotate(-3deg);padding:10px 10px 35px;background:#fffaf1;box-shadow:5px 7px 0 #dfd2bb,7px 9px 0 #faf0dc,9px 13px 15px #473b2325}
+.frame-4 .photo-mount:before{width:92px;height:27px;top:-12px;left:calc(50% - 46px);background:repeating-linear-gradient(90deg,#aab29785 0 8px,#c8ceb365 8px 16px);transform:rotate(-8deg)}
+.frame-5 .photo-mount{transform:rotate(4deg);padding:14px;background:#ead9ce;border:1px solid #cba899;outline:1px solid #b8887a;outline-offset:4px}
+.frame-5 .photo-mount:before,.frame-5 .photo-mount:after{width:63px;height:23px;top:7px;right:-22px;background:#d8c3989e;transform:rotate(48deg)}
+.frame-5 .photo-mount:after{right:auto;top:auto;left:-20px;bottom:9px}
+.photo-mount .photo-wrap span{z-index:1}
+@media(max-width:700px){.gallery .memory{padding:35px 30px 18px}.photo-mount{margin-bottom:23px}.frame-0 .photo-mount:before,.frame-4 .photo-mount:before{width:72px;left:calc(50% - 36px)}.gallery .memory .photo-wrap{aspect-ratio:4/4.3}}
+
+.gallery .album-ending h3{text-align:center}

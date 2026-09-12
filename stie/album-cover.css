@@ -1,0 +1,16 @@
+.album-shell{position:relative;perspective:2200px;isolation:isolate}
+.album-shell .gallery{transition:transform 1.2s cubic-bezier(.25,.65,.25,1),opacity .65s;transform-origin:center}
+.album-shell.closed .gallery{transform:translateX(25%);opacity:0;pointer-events:none}
+.album-cover{position:absolute;left:25%;top:0;width:50%;height:100%;min-height:390px;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;border:1px solid #643341;border-radius:5px 12px 12px 5px;padding:35px;background:repeating-linear-gradient(0deg,#ffffff05 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,#00000008 0 1px,transparent 1px 3px),#804650;color:#efdabc;box-shadow:inset 13px 0 15px #33152545,inset 18px 0 0 #ffffff08,5px 4px 0 #e5d9c2,8px 7px 0 #f4ead6,10px 10px 0 #70404a,15px 24px 35px #49352230;transform-origin:left center;backface-visibility:hidden;transition:transform 1.2s cubic-bezier(.25,.65,.25,1),left 1.2s cubic-bezier(.25,.65,.25,1),opacity .25s .85s}
+.cover-border{position:absolute;inset:20px 20px 20px 30px;border:1px solid #dbbd8f77;border-radius:3px;pointer-events:none}
+.cover-small{font:9px Manrope,Arial,sans-serif;letter-spacing:2.5px;text-align:center}.cover-title{font:46px/1.1 'Cormorant Garamond',Georgia,serif;text-align:center}.cover-heart{font:85px/1 Caveat,cursive}.cover-hand{font:29px Caveat,cursive}.cover-open{font:11px Manrope,Arial,sans-serif;border-bottom:1px solid #d9b99077;padding:0 0 7px}
+.album-shell.opening .album-cover,.album-shell.opened .album-cover{left:50%;transform:rotateY(-180deg);opacity:0;pointer-events:none}
+.album-shell.opened .album-cover{visibility:hidden}
+.album-shell.closing .album-cover{visibility:visible;transition:transform 1.2s cubic-bezier(.25,.65,.25,1),left 1.2s cubic-bezier(.25,.65,.25,1),opacity .15s}
+.close-album{display:block;margin:27px auto 0;border:1px solid #c5b8a4;background:transparent;border-radius:22px;padding:10px 22px;color:#8e3e43;font:11px Manrope,Arial,sans-serif;cursor:pointer}
+.close-album:hover{background:#8e3e43;color:#fffaf0}
+.memories:has(.album-shell:not(.opened)) .close-album{visibility:hidden;pointer-events:none}
+.memories:has(.album-shell.closed) .album-controls,.memories:has(.album-shell.opening) .album-controls{visibility:hidden;pointer-events:none}
+.album-shell.closed{min-height:440px}
+@media(max-width:700px){.album-cover{left:0;width:100%;min-height:420px;padding:28px;gap:23px}.cover-title{font-size:40px}.album-shell.closed .gallery{transform:none}.album-shell.opening .album-cover,.album-shell.opened .album-cover{left:0;transform:rotateY(-160deg)}.album-shell.closed{min-height:450px}}
+@media(prefers-reduced-motion:reduce){.album-cover,.album-shell .gallery{transition:none}}
