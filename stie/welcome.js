@@ -9,7 +9,16 @@
   children.forEach(el => el.inert = false);
   document.querySelector('.brand')?.focus({preventScroll: true});
  }
- buttons.forEach(button => button.addEventListener('click', enter));
+ let secondScreen=false;
+ const meme=new Image();meme.src='photos/mem.jpg';
+ buttons[0].addEventListener('click',enter);
+ buttons[1].addEventListener('click',()=>{
+  if(secondScreen){enter();return;}
+  secondScreen=true;
+  picture.hidden=false;picture.style.display='block';placeholder.hidden=true;
+  picture.src=meme.src;picture.alt='Mem';
+  buttons[0].focus({preventScroll:true});
+ });
  screen.addEventListener('keydown', event => {
   if(event.key !== 'Tab') return;
   event.preventDefault();
