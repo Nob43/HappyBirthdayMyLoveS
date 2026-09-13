@@ -15,13 +15,19 @@
  buttons[1].addEventListener('click',()=>{
   if(secondScreen){enter();return;}
   secondScreen=true;
+  screen.classList.add('meme-only');
+  screen.removeAttribute('aria-labelledby');screen.setAttribute('aria-label','Photo');
+  picture.tabIndex=0;picture.setAttribute('role','button');
+  picture.addEventListener('click',enter,{once:true});
+  picture.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();enter();}});
   picture.hidden=false;picture.style.display='block';placeholder.hidden=true;
   picture.src=meme.src;picture.alt='Mem';
-  buttons[0].focus({preventScroll:true});
+  picture.focus({preventScroll:true});
  });
  screen.addEventListener('keydown', event => {
   if(event.key !== 'Tab') return;
   event.preventDefault();
+  if(secondScreen){picture.focus();return;}
   buttons[document.activeElement === buttons[0] ? 1 : 0].focus();
  });
  document.addEventListener('keydown', event => {

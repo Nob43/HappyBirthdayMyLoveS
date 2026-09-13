@@ -14,3 +14,7 @@ body.welcome-open{overflow:hidden}
 .welcome-actions button:hover{filter:brightness(.92)}
 .welcome-actions button:focus-visible{outline:2px solid #8e3e43;outline-offset:4px}
 @media(prefers-reduced-motion:no-preference){.welcome-card{animation:welcome-appear .4s ease-out}@keyframes welcome-appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}}
+
+.meme-only .welcome-card{width:fit-content;max-width:min(90vw,680px);padding:12px}
+.meme-only .welcome-kicker,.meme-only h2,.meme-only .welcome-actions{display:none}
+.meme-only .welcome-picture{width:auto;height:auto;max-width:100%;max-height:80vh;aspect-ratio:auto;object-fit:contain;cursor:pointer}
