@@ -1,0 +1,7 @@
+.sound-toggle{border:1px solid #c6b7a44d;background:transparent;border-radius:20px;padding:8px 13px;font:11px Manrope,Arial,sans-serif;color:#8e3e43;cursor:pointer}
+.sound-toggle:hover{background:#8e3e430b}
+.album-heart-layer{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:visible;contain:layout style}
+.album-floating-heart{position:absolute;left:50%;top:48%;line-height:1;color:#a74d62;text-shadow:0 1px 0 #e1a5af,1px 2px 0 #8a354b,2px 3px 0 #793047,3px 5px 6px #61304030;pointer-events:none;will-change:transform,opacity}
+.album-floating-heart:nth-child(3n){color:#d797a3;text-shadow:0 1px 0 #f6ced5,1px 2px 0 #bd7485,2px 3px 0 #a86378,3px 5px 6px #61304025}
+@media(max-width:700px){.album-floating-heart{top:42%}.sound-toggle{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.album-heart-layer{display:none}}

@@ -8,6 +8,7 @@
  cover.addEventListener('click',()=>{
   if(busy||!shell.classList.contains('closed'))return;
   busy=true;
+  window.albumEffects?.rustle();window.albumEffects?.hearts();
   shell.classList.remove('closed');
   shell.classList.add('opening');
   const finish=()=>{
@@ -21,6 +22,7 @@
  close.addEventListener('click',()=>{
   if(busy||!shell.classList.contains('opened')||album.classList.contains('is-turning'))return;
   busy=true;album.inert=true;
+  window.albumEffects?.rustle();
   cover.hidden=false;
   shell.classList.add('closing');
   void cover.offsetWidth;
