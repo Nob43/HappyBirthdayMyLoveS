@@ -1,0 +1,11 @@
+#photo-dialog{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:60px 24px;overflow:hidden;border:0;background:transparent;box-shadow:none}
+#photo-dialog[open]{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#photo-dialog #large-photo{flex-shrink:0;max-width:min(88vw,1100px);max-height:calc(100dvh - 120px);width:auto;height:auto;margin:0;object-fit:contain;border:10px solid #fffaf0;box-shadow:0 22px 65px #0005;transform-origin:center;will-change:transform}
+#photo-dialog .close{position:fixed;right:25px;top:20px}
+#photo-caption:empty{display:none}
+#photo-dialog::backdrop{background:#25221bc9;backdrop-filter:blur(5px);transition:background .5s,backdrop-filter .5s}
+#photo-dialog.photo-returning::backdrop{background:#25221b00;backdrop-filter:blur(0)}
+.photo-detached .photo-wrap{background:#ded3be}
+.photo-detached:before,.photo-detached:after,.photo-detached .decoration{opacity:.35;transition:opacity .3s}
+@media(max-width:700px){#photo-dialog #large-photo{border-width:7px;max-width:92vw}}
+@media(prefers-reduced-motion:reduce){#photo-dialog::backdrop{transition:none}}
