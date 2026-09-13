@@ -8,7 +8,15 @@
   const from=source.getBoundingClientRect(),to=image.getBoundingClientRect();
   const matrix=getComputedStyle(mount).transform;
   const angle=matrix==='none'?0:Math.atan2(new DOMMatrix(matrix).b,new DOMMatrix(matrix).a)*180/Math.PI;
-  return `translate(${from.left+from.width/2-to.left-to.width/2}px,${from.top+from.height/2-to.top-to.height/2}px) rotate(${angle}deg) scale(${from.width/to.width},${from.height/to.height})`;
+  const x=from.left+from.width/2-to.left-to.width/2,y=from.top+from.height/2-to.top-to.height/2;
+  const scale=source.offsetWidth/image.offsetWidth;
+  return {rest:`translate(${x}px,${y}px) rotate(${angle}deg) scale(${scale})`,lift:`translate(${x}px,${y-22}px) rotate(${angle-2}deg) scale(${scale*1.035})`};
+ }
+ function fit(){
+  const ratio=source.offsetWidth/source.offsetHeight;
+  const width=Math.min(innerWidth*.88,1100,(innerHeight-120)*ratio);
+  image.style.width=width+'px';image.style.height=width/ratio+'px';
+  image.style.objectFit='cover';image.style.objectPosition=getComputedStyle(source).objectPosition;
  }
  async function open(button){
   if(busy||dialog.open)return;
@@ -16,14 +24,15 @@
   image.src=source.currentSrc||source.src;image.alt=source.alt;
   caption.textContent='';
   try{await image.decode()}catch{}
-  dialog.showModal();
+  fit();dialog.showModal();
   const transform=origin();
   source.style.visibility='hidden';mount.classList.add('photo-detached');
   if(!reduced()){
    const animation=image.animate([
-    {transform,boxShadow:'0 3px 8px #0002'},
+    {transform:transform.rest,boxShadow:'0 3px 8px #0002',offset:0},
+    {transform:transform.lift,boxShadow:'0 16px 22px #0003',offset:.28},
     {transform:'translate(0,0) rotate(0deg) scale(1)',boxShadow:'0 22px 65px #0005'}
-   ],{duration:650,easing:'cubic-bezier(.2,.75,.2,1)'});
+   ],{duration:1050,easing:'cubic-bezier(.35,0,.2,1)'});
    try{await animation.finished}catch{}
   }
   busy=false;
@@ -33,7 +42,8 @@
   busy=true;
   if(source?.isConnected&&!reduced()){
    dialog.classList.add('photo-returning');
-   const animation=image.animate([{transform:'none'},{transform:origin()}],{duration:550,easing:'cubic-bezier(.4,0,.25,1)',fill:'forwards'});
+   const destination=origin();
+   const animation=image.animate([{transform:'none',offset:0},{transform:destination.lift,offset:.74},{transform:destination.rest,offset:1}],{duration:950,easing:'cubic-bezier(.35,0,.2,1)',fill:'forwards'});
    try{await animation.finished}catch{}
    dialog.close();animation.cancel();
   }else dialog.close();
@@ -44,6 +54,7 @@
   const button=event.target.closest('[data-photo],[data-hero]');
   if(button&&!document.querySelector('#gallery.is-turning'))open(button);
  });
+ window.addEventListener('resize',()=>{if(dialog.open&&!busy)fit()});
  dialog.querySelector('.close').addEventListener('click',close);
  dialog.addEventListener('cancel',event=>{event.preventDefault();close()});
  dialog.addEventListener('click',event=>{if(event.target===dialog)close()});

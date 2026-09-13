@@ -9,3 +9,7 @@
 .photo-detached:before,.photo-detached:after,.photo-detached .decoration{opacity:.35;transition:opacity .3s}
 @media(max-width:700px){#photo-dialog #large-photo{border-width:7px;max-width:92vw}}
 @media(prefers-reduced-motion:reduce){#photo-dialog::backdrop{transition:none}}
+
+#photo-dialog #large-photo{box-sizing:border-box;max-width:none;max-height:none}
+.photo-detached:before{transform:translateY(-5px) rotate(-9deg);opacity:.6;transition:transform .4s ease,opacity .4s ease}
+.photo-detached:after{opacity:.55}
