@@ -1,35 +1,12 @@
 (() => {
- let context, noise;
- let muted=false;
+ const tracks=[1,4,6].map(n=>{const audio=new Audio('audio/book_flip.'+n+'.ogg');audio.preload='auto';audio.volume=.35;return audio});
+ let muted=false,track=0;
  try{muted=localStorage.getItem('album-muted')==='true'}catch{}
- const toggle=document.createElement('button');
- toggle.className='sound-toggle';toggle.type='button';
- const label=()=>{toggle.textContent=muted?'Звук: выкл.':'Звук: вкл.';toggle.setAttribute('aria-pressed',String(!muted));};
+ const toggle=document.createElement('button');toggle.className='sound-toggle';toggle.type='button';
+ const label=()=>{toggle.textContent=muted?'\u0417\u0432\u0443\u043a: \u0432\u044b\u043a\u043b.':'\u0417\u0432\u0443\u043a: \u0432\u043a\u043b.';toggle.setAttribute('aria-pressed',String(!muted))};
  label();document.querySelector('header').append(toggle);
- function unlock(){
-  if(muted)return;
-  try{
-   const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)return;
-   if(!context){
-    context=new Audio();noise=context.createBuffer(1,Math.ceil(context.sampleRate*.6),context.sampleRate);
-    const data=noise.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=Math.random()*2-1;
-   }
-   if(context.state==='suspended')context.resume().catch(()=>{});
-  }catch{}
- }
- toggle.addEventListener('click',()=>{muted=!muted;label();try{localStorage.setItem('album-muted',String(muted))}catch{}if(!muted)unlock()});
- document.addEventListener('pointerdown',unlock,{passive:true});
- document.addEventListener('keydown',unlock);
- function rustle(){
-  unlock();if(muted||!context||context.state!=='running')return;
-  const source=context.createBufferSource(),filter=context.createBiquadFilter(),gain=context.createGain();
-  source.buffer=noise;filter.type='bandpass';filter.Q.value=.65;
-  const t=context.currentTime;
-  filter.frequency.setValueAtTime(1100,t);filter.frequency.exponentialRampToValueAtTime(2600,t+.15);filter.frequency.exponentialRampToValueAtTime(700,t+.52);
-  gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.11,t+.055);gain.gain.linearRampToValueAtTime(.025,t+.17);gain.gain.linearRampToValueAtTime(.075,t+.27);gain.gain.exponentialRampToValueAtTime(.001,t+.55);
-  source.connect(filter);filter.connect(gain);gain.connect(context.destination);source.start();source.stop(t+.58);
-  source.onended=()=>{source.disconnect();filter.disconnect();gain.disconnect()};
- }
+ toggle.addEventListener('click',()=>{muted=!muted;label();if(muted)tracks.forEach(a=>a.pause());try{localStorage.setItem('album-muted',String(muted))}catch{}});
+ function rustle(){if(muted)return;const audio=tracks[track++%tracks.length];tracks.forEach(a=>a.pause());audio.currentTime=0;audio.play().catch(()=>{});}
  function hearts(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   const shell=document.querySelector('#album-shell');
