@@ -37,5 +37,5 @@
   }
   setTimeout(()=>layer.remove(),2300);
  }
- window.albumEffects={letterSound,stopLetter,rustle,hearts,firework,stopFireworks,openBook:()=>coverSound(opening),closeBook:()=>coverSound(closing)};
+ window.albumEffects={isMuted:()=>muted,letterSound,stopLetter,rustle,hearts,firework,stopFireworks,openBook:()=>coverSound(opening),closeBook:()=>coverSound(closing)};
 })();

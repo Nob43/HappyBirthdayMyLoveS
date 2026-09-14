@@ -1,0 +1,22 @@
+.music-toggle{display:block;margin:15px auto 0;border:1px solid #c5b8a4;border-radius:24px;background:transparent;color:#8e3e43;padding:12px 20px;font:13px Manrope,Arial,sans-serif;cursor:pointer;min-height:44px}
+.memories:has(.album-shell:not(.opened)) .music-toggle{visibility:hidden;pointer-events:none}
+@media(max-width:700px){
+ header{padding:18px 20px}.sound-toggle{min-height:44px}
+ .hero{padding:38px 16px 0}h1{font-size:clamp(46px,11vw,68px);letter-spacing:-1px;line-height:1.06}
+ .intro{line-height:1.7;padding:0 8px}
+ .collage{height:300px}.polaroid{width:clamp(118px,33vw,155px)}.polaroid:nth-child(2){width:clamp(132px,36vw,170px)}
+ .memories{padding:0 16px;margin-top:35px;margin-bottom:45px}
+ .section-head h2{font-size:clamp(30px,8vw,42px);line-height:1.12}
+ .gallery .memory{padding:30px 25px 15px}
+ .gallery .memory .photo-wrap{aspect-ratio:4/4.5}
+ .album-controls{gap:30px;margin-top:18px}.album-controls button{width:52px;height:52px;touch-action:manipulation}
+ .album-controls span{font-size:14px}.close-album{min-height:46px;margin-top:23px}
+ .album-cover{min-height:0}.album-shell.closed{min-height:390px}
+ .album-shell .gallery{touch-action:pan-y pinch-zoom}
+ .quote{padding:40px 22px}.quote blockquote{font-size:32px}
+ .letter{padding:48px 18px}.letter h2{font-size:36px}
+ #letter-dialog{max-width:calc(100vw - 24px);max-height:calc(100dvh - 28px)}
+ .letter-copy{padding:48px 24px 30px}.letter-copy h2{font-size:34px}.letter-copy p{font-size:21px;line-height:1.5}
+ #letter-dialog.letter-unwrapping{max-width:none;max-height:none}
+ .close{min-width:44px;min-height:44px}
+}

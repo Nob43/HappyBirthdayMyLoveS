@@ -16,3 +16,7 @@ License: CC0
 
 Letter sounds (CC0): pickup/flap/paper are book_flip.2/5/8 by StarNinjas, https://opengameart.org/content/10-book-page-flips
 letter-seal.ogg is cloth1.ogg by Kenney, https://opengameart.org/content/50-rpg-sound-effects
+
+Happy moments (piano1.3.ogg) by Centurion_of_war
+https://opengameart.org/content/happy-moments
+License: CC0
