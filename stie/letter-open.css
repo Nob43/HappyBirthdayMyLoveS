@@ -1,0 +1,16 @@
+#letter-dialog.letter-unwrapping{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;overflow:hidden;background:transparent;box-shadow:none}
+.letter-unwrapping .letter-copy{visibility:hidden;pointer-events:none}
+.letter-unwrapping>.close{position:fixed;top:20px;right:20px;z-index:10}
+.letter-opening-stage{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.moving-envelope{position:relative;width:min(460px,78vw);aspect-ratio:1.62;perspective:1200px;isolation:isolate;transform-origin:center;will-change:transform}
+.envelope-back{position:absolute;inset:0;background:#ddcbae;border:1px solid #d3bd9a;box-shadow:0 24px 50px #20140f45;border-radius:3px}
+.envelope-pocket{position:absolute;inset:0;z-index:3;background:linear-gradient(140deg,#eadcc4,#e4d0af);clip-path:polygon(0 0,50% 60%,100% 0,100% 100%,0 100%)}
+.envelope-pocket:after{content:'';position:absolute;inset:0;background:#eddfc7;clip-path:polygon(0 100%,50% 45%,100% 100%)}
+.envelope-flap{position:absolute;inset:0;z-index:4;transform-origin:top center;background:linear-gradient(#f1e6d2,#e3d1b3);clip-path:polygon(0 0,100% 0,50% 62%);backface-visibility:visible;will-change:transform}
+.envelope-seal{position:absolute;top:40%;left:calc(50% - 27px);width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:#8e3e43;color:#f5ddcd;box-shadow:0 4px 8px #60352935;z-index:5;font:25px Georgia,serif}
+.envelope-paper{position:absolute;left:6%;top:7%;width:88%;height:87%;padding:24px;background:#faf6ed;box-shadow:0 1px 8px #75604025;z-index:2;overflow:hidden;color:#8e3e43}
+.envelope-paper span{display:block;text-align:center;font:28px/1.2 'Cormorant Garamond',Georgia,serif;margin-bottom:18px}
+.envelope-paper i{display:block;height:1px;background:#d8c9b5;margin:12px 0;width:94%}
+.envelope-paper i:last-child{width:70%}
+@media(max-width:700px){.envelope-paper{padding:15px}.envelope-paper span{font-size:23px;margin-bottom:10px}.envelope-seal{width:42px;height:42px;left:calc(50% - 21px);font-size:20px}}
+@media(max-height:500px){.moving-envelope{width:min(340px,60vw)}}
