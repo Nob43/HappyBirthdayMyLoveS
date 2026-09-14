@@ -6,7 +6,10 @@
  const fireworks=[1,2,3].map(n=>{const a=new Audio('audio/fw_0'+n+'.ogg');a.preload='auto';a.volume=.13;return a});let fireworkIndex=0;
  const stopFireworks=()=>fireworks.forEach(a=>{a.pause();a.currentTime=0});
  const firework=()=>{if(muted)return;const a=fireworks[fireworkIndex++%fireworks.length];a.currentTime=0;a.play().catch(()=>{});};
- const allSounds=[...tracks,opening,closing,chimes,...fireworks];
+ const letterSounds=Object.fromEntries(['pickup','seal','flap','paper'].map(name=>{const a=new Audio('audio/letter-'+name+'.ogg');a.preload='auto';a.volume=name==='seal'?.14:.22;return [name,a]}));
+ const stopLetter=()=>Object.values(letterSounds).forEach(a=>{a.pause();a.currentTime=0});
+ const letterSound=name=>{stopLetter();if(muted)return;const a=letterSounds[name];if(a)a.play().catch(()=>{});};
+ const allSounds=[...tracks,opening,closing,chimes,...fireworks,...Object.values(letterSounds)];
  function coverSound(audio){if(muted)return;allSounds.forEach(a=>a.pause());audio.currentTime=0;audio.play().catch(()=>{});}
  let muted=false,track=0;
  try{muted=localStorage.getItem('album-muted')==='true'}catch{}
@@ -34,5 +37,5 @@
   }
   setTimeout(()=>layer.remove(),2300);
  }
- window.albumEffects={rustle,hearts,firework,stopFireworks,openBook:()=>coverSound(opening),closeBook:()=>coverSound(closing)};
+ window.albumEffects={letterSound,stopLetter,rustle,hearts,firework,stopFireworks,openBook:()=>coverSound(opening),closeBook:()=>coverSound(closing)};
 })();

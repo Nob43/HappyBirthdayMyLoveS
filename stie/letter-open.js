@@ -6,7 +6,7 @@
   const animation=el.animate(frames,{fill:'forwards',...options});animations.push(animation);
   await animation.finished;
  }
- function cleanup(){animations.forEach(a=>a.cancel());animations=[];dialog.querySelector('.letter-opening-stage')?.remove();dialog.classList.remove('letter-unwrapping');trigger.style.visibility='';running=false;}
+ function cleanup(){window.albumEffects?.stopLetter();animations.forEach(a=>a.cancel());animations=[];dialog.querySelector('.letter-opening-stage')?.remove();dialog.classList.remove('letter-unwrapping');trigger.style.visibility='';running=false;}
  dialog.addEventListener('close',cleanup);
  trigger.addEventListener('click',async()=>{
   if(running||dialog.open)return;
@@ -20,10 +20,14 @@
   const dx=from.left+from.width/2-to.left-to.width/2,dy=from.top+from.height/2-to.top-to.height/2,scale=trigger.offsetWidth/envelope.offsetWidth;
   trigger.style.visibility='hidden';
   try{
+   window.albumEffects?.letterSound('pickup');
    await animate(envelope,[{transform:`translate(${dx}px,${dy}px) rotate(-4deg) scale(${scale})`},{transform:'translate(0,0) rotate(0deg) scale(1)'}],{duration:750,easing:'cubic-bezier(.2,.75,.25,1)'});
+   window.albumEffects?.letterSound('seal');
    await animate(seal,[{opacity:1,clipPath:'inset(0 0 0 0)',transform:'scale(1)'},{opacity:.5,offset:.65,clipPath:'inset(0 0 65% 0)',transform:'scale(.97)'},{opacity:0,clipPath:'inset(0 0 100% 0)',transform:'scale(.94)'}],{duration:550,easing:'ease-in-out'});
+   window.albumEffects?.letterSound('flap');
    await animate(flap,[{transform:'rotateX(0deg)'},{transform:'rotateX(180deg)'}],{duration:650,easing:'cubic-bezier(.35,0,.2,1)'});
    flap.style.zIndex='0';
+   window.albumEffects?.letterSound('paper');
    await animate(paper,[{transform:'translateY(0)'},{transform:'translateY(-67%)'}],{duration:850,easing:'cubic-bezier(.2,.7,.2,1)'});
    await animate(stage,[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(20px)'}],{duration:300,easing:'ease-in'});
    cleanup();

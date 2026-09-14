@@ -13,3 +13,6 @@ heart-chimes.wav: original procedurally generated four-note bell sound for this 
 fw_01.ogg, fw_02.ogg, fw_03.ogg by rubberduck
 https://opengameart.org/content/25-cc0-bang-firework-sfx
 License: CC0
+
+Letter sounds (CC0): pickup/flap/paper are book_flip.2/5/8 by StarNinjas, https://opengameart.org/content/10-book-page-flips
+letter-seal.ogg is cloth1.ogg by Kenney, https://opengameart.org/content/50-rpg-sound-effects
