@@ -6,8 +6,8 @@
  let entering=false;
  async function enter() {
   if(entering)return;entering=true;
-  await window.birthdayCelebration?.();
   screen.hidden = true;
+  await window.birthdayCelebration?.();
   document.body.classList.remove('welcome-open');
   children.forEach(el => el.inert = false);
   document.querySelector('.brand')?.focus({preventScroll: true});
@@ -18,8 +18,7 @@
  buttons[1].addEventListener('click',async()=>{
   if(secondScreen){enter();return;}
   if(entering)return;entering=true;
-  await window.birthdayCelebration?.();
-  entering=false;
+  const celebration=window.birthdayCelebration?.();
   secondScreen=true;
   screen.classList.add('meme-only');
   screen.removeAttribute('aria-labelledby');screen.setAttribute('aria-label','Photo');
@@ -28,6 +27,8 @@
   picture.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();enter();}});
   picture.hidden=false;picture.style.display='block';placeholder.hidden=true;
   picture.src=meme.src;picture.alt='Mem';
+  await celebration;
+  entering=false;
   picture.focus({preventScroll:true});
  });
  screen.addEventListener('keydown', event => {
