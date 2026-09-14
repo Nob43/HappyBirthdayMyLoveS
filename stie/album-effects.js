@@ -2,7 +2,8 @@
  const tracks=[1,4,6].map(n=>{const audio=new Audio('audio/book_flip.'+n+'.ogg');audio.preload='auto';audio.volume=.35;return audio});
  const opening=new Audio('audio/bookOpen.ogg'),closing=new Audio('audio/bookClose.ogg');
  opening.preload=closing.preload='auto';opening.volume=.35;closing.volume=.25;
- const allSounds=[...tracks,opening,closing];
+ const chimes=new Audio('audio/heart-chimes.wav');chimes.preload='auto';chimes.volume=.28;
+ const allSounds=[...tracks,opening,closing,chimes];
  function coverSound(audio){if(muted)return;allSounds.forEach(a=>a.pause());audio.currentTime=0;audio.play().catch(()=>{});}
  let muted=false,track=0;
  try{muted=localStorage.getItem('album-muted')==='true'}catch{}
@@ -12,6 +13,7 @@
  toggle.addEventListener('click',()=>{muted=!muted;label();if(muted)allSounds.forEach(a=>a.pause());try{localStorage.setItem('album-muted',String(muted))}catch{}});
  function rustle(){if(muted)return;const audio=tracks[track++%tracks.length];allSounds.forEach(a=>a.pause());audio.currentTime=0;audio.play().catch(()=>{});}
  function hearts(){
+  if(!muted){chimes.currentTime=0;chimes.play().catch(()=>{}); }
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   const shell=document.querySelector('#album-shell');
   const layer=document.createElement('div');layer.className='album-heart-layer';layer.setAttribute('aria-hidden','true');

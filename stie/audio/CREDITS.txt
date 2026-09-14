@@ -7,3 +7,5 @@ Files: book_flip.1.ogg, book_flip.4.ogg, book_flip.6.ogg
 bookOpen.ogg and bookClose.ogg: Kenney, 50 RPG sound effects
 https://opengameart.org/content/50-rpg-sound-effects
 License: CC0
+
+heart-chimes.wav: original procedurally generated four-note bell sound for this site.
