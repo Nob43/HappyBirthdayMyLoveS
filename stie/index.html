@@ -74,7 +74,12 @@ async function turn(direction){
  if(size===2){const fixed=face(oldPages[forward?0:1]);fixed.classList.add('turn-fixed');fixed.style.width=width+'px';fixed.style.left=forward?'0':width+'px';overlay.append(fixed)}
  overlay.append(sheet);gallery.append(overlay);gallery.classList.add('is-turning');
  const start=size===1&&!forward?-180:0,end=size===1&&!forward?0:forward?-180:180;
- if(size===1&&!forward){sheet.replaceChildren(face(newPages[0]),face(null,true))}
+ if(size===1&&!forward){
+  // Keep the currently visible photo below the returning sheet until it lands.
+  const fixed=face(oldPages[0]);fixed.classList.add('turn-fixed');
+  fixed.style.width=width+'px';fixed.style.left='0';overlay.prepend(fixed);
+  sheet.replaceChildren(face(newPages[0]),face(null,true));
+ }
  window.albumEffects?.rustle();
  const animation=sheet.animate([{transform:'rotateY('+start+'deg)'},{transform:'rotateY('+end+'deg)'}],{duration:850,easing:'cubic-bezier(.35,.05,.2,1)',fill:'forwards'});
 
