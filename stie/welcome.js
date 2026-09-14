@@ -3,7 +3,10 @@
  const children = [...document.body.children].filter(el => el !== screen && !['SCRIPT', 'LINK', 'STYLE'].includes(el.tagName));
  children.forEach(el => el.inert = true);
  const buttons = [...screen.querySelectorAll('button')];
- function enter() {
+ let entering=false;
+ async function enter() {
+  if(entering)return;entering=true;
+  await window.birthdayCelebration?.();
   screen.hidden = true;
   document.body.classList.remove('welcome-open');
   children.forEach(el => el.inert = false);
@@ -12,8 +15,11 @@
  let secondScreen=false;
  const meme=new Image();meme.src='photos/mem.jpg';
  buttons[0].addEventListener('click',enter);
- buttons[1].addEventListener('click',()=>{
+ buttons[1].addEventListener('click',async()=>{
   if(secondScreen){enter();return;}
+  if(entering)return;entering=true;
+  await window.birthdayCelebration?.();
+  entering=false;
   secondScreen=true;
   screen.classList.add('meme-only');
   screen.removeAttribute('aria-labelledby');screen.setAttribute('aria-label','Photo');

@@ -1,0 +1,13 @@
+.birthday-celebration{position:fixed;inset:0;z-index:200;background:radial-gradient(ellipse at 50% 40%,#703b51,#281d30 85%);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff1dc;overflow:hidden;transition:opacity .45s;touch-action:manipulation}
+.birthday-celebration canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.birthday-message{position:relative;pointer-events:none;padding:24px;animation:birthday-arrive .8s cubic-bezier(.2,.8,.2,1) both}
+.birthday-message h2{font:400 clamp(70px,12vw,180px)/.92 'Cormorant Garamond',Georgia,serif;margin:18px 0 28px;letter-spacing:-3px;text-shadow:0 6px 35px #130f1b44}
+.birthday-message h2 em{color:#f1b6c6;font-weight:400}
+.birthday-message p{font:28px Caveat,cursive;color:#f2d7bc;margin:0}
+.birthday-spark{font-size:44px;color:#f5d79f}
+.birthday-continue{position:absolute;bottom:max(28px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);border:1px solid #f2d7bc60;border-radius:30px;padding:12px 24px;background:#ffffff0a;color:#fff1dc;font:13px Manrope,Arial,sans-serif;cursor:pointer;white-space:nowrap}
+.birthday-leaving{opacity:0;pointer-events:none}
+@keyframes birthday-arrive{from{opacity:0;transform:translateY(20px) scale(.92)}to{opacity:1;transform:none}}
+@media(max-width:700px){.birthday-message h2{font-size:clamp(65px,17vw,115px);letter-spacing:-2px}.birthday-message p{font-size:24px}.birthday-spark{font-size:34px}.birthday-message{padding:16px}}
+@media(max-height:500px){.birthday-message h2{font-size:65px;margin:4px 0 10px}.birthday-spark{display:none}.birthday-message{padding-bottom:65px}.birthday-message p{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.birthday-message{animation:none}.birthday-celebration{transition:none}}
