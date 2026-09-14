@@ -5,7 +5,7 @@
  const buttons = [...screen.querySelectorAll('button')];
  let entering=false;
  async function enter() {
-  if(entering)return;entering=true;
+  if(entering||secondScreen)return;entering=true;
   screen.hidden = true;
   await window.birthdayCelebration?.();
   document.body.classList.remove('welcome-open');
@@ -15,26 +15,25 @@
  let secondScreen=false;
  const meme=new Image();meme.src='photos/mem.jpg';
  buttons[0].addEventListener('click',enter);
- buttons[1].addEventListener('click',async()=>{
-  if(secondScreen){enter();return;}
-  if(entering)return;entering=true;
-  const celebration=window.birthdayCelebration?.();
-  secondScreen=true;
-  screen.classList.add('meme-only');
+ const back=document.createElement('button');back.type='button';back.className='welcome-back';back.innerHTML='&#8592;';back.setAttribute('aria-label','Back');back.hidden=true;screen.append(back);
+ buttons[1].addEventListener('click',()=>{
+  if(entering||secondScreen)return;
+  secondScreen=true;screen.classList.add('meme-only');
   screen.removeAttribute('aria-labelledby');screen.setAttribute('aria-label','Photo');
-  picture.tabIndex=0;picture.setAttribute('role','button');
-  picture.addEventListener('click',enter,{once:true});
-  picture.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();enter();}});
   picture.hidden=false;picture.style.display='block';placeholder.hidden=true;
-  picture.src=meme.src;picture.alt='Mem';
-  await celebration;
-  entering=false;
-  picture.focus({preventScroll:true});
+  picture.src=meme.src;picture.alt='Mem';back.hidden=false;back.focus({preventScroll:true});
+ });
+ back.addEventListener('click',()=>{
+  if(entering)return;
+  secondScreen=false;screen.classList.remove('meme-only');back.hidden=true;
+  screen.removeAttribute('aria-label');screen.setAttribute('aria-labelledby','welcome-title');
+  picture.hidden=false;picture.style.display='block';placeholder.hidden=true;
+  picture.src='photos/Welcome.png';picture.alt='Welcome';buttons[0].focus({preventScroll:true});
  });
  screen.addEventListener('keydown', event => {
   if(event.key !== 'Tab') return;
   event.preventDefault();
-  if(secondScreen){picture.focus();return;}
+  if(secondScreen){back.focus();return;}
   buttons[document.activeElement === buttons[0] ? 1 : 0].focus();
  });
  document.addEventListener('keydown', event => {

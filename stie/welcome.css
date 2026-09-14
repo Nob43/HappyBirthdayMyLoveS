@@ -18,3 +18,7 @@ body.welcome-open{overflow:hidden}
 .meme-only .welcome-card{width:fit-content;max-width:min(90vw,680px);padding:12px}
 .meme-only .welcome-kicker,.meme-only h2,.meme-only .welcome-actions{display:none}
 .meme-only .welcome-picture{width:auto;height:auto;max-width:100%;max-height:80vh;aspect-ratio:auto;object-fit:contain;cursor:pointer}
+
+.welcome-back{position:fixed;left:max(18px,env(safe-area-inset-left));top:max(18px,env(safe-area-inset-top));width:48px;height:48px;border:1px solid #bda58e;background:#faf6ed;border-radius:50%;color:#8e3e43;font-size:28px;cursor:pointer;z-index:2}
+.welcome-back[hidden]{display:none}
+.meme-only .welcome-picture{cursor:default}
