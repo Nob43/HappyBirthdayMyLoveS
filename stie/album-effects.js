@@ -3,7 +3,10 @@
  const opening=new Audio('audio/bookOpen.ogg'),closing=new Audio('audio/bookClose.ogg');
  opening.preload=closing.preload='auto';opening.volume=.35;closing.volume=.25;
  const chimes=new Audio('audio/heart-chimes.wav');chimes.preload='auto';chimes.volume=.28;
- const allSounds=[...tracks,opening,closing,chimes];
+ const fireworks=[1,2,3].map(n=>{const a=new Audio('audio/fw_0'+n+'.ogg');a.preload='auto';a.volume=.13;return a});let fireworkIndex=0;
+ const stopFireworks=()=>fireworks.forEach(a=>{a.pause();a.currentTime=0});
+ const firework=()=>{if(muted)return;const a=fireworks[fireworkIndex++%fireworks.length];a.currentTime=0;a.play().catch(()=>{});};
+ const allSounds=[...tracks,opening,closing,chimes,...fireworks];
  function coverSound(audio){if(muted)return;allSounds.forEach(a=>a.pause());audio.currentTime=0;audio.play().catch(()=>{});}
  let muted=false,track=0;
  try{muted=localStorage.getItem('album-muted')==='true'}catch{}
@@ -31,5 +34,5 @@
   }
   setTimeout(()=>layer.remove(),2300);
  }
- window.albumEffects={rustle,hearts,openBook:()=>coverSound(opening),closeBook:()=>coverSound(closing)};
+ window.albumEffects={rustle,hearts,firework,stopFireworks,openBook:()=>coverSound(opening),closeBook:()=>coverSound(closing)};
 })();

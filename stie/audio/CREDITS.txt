@@ -9,3 +9,7 @@ https://opengameart.org/content/50-rpg-sound-effects
 License: CC0
 
 heart-chimes.wav: original procedurally generated four-note bell sound for this site.
+
+fw_01.ogg, fw_02.ogg, fw_03.ogg by rubberduck
+https://opengameart.org/content/25-cc0-bang-firework-sfx
+License: CC0
